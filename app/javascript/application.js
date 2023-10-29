@@ -1,3 +1,35 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import jquery from "jquery"
+window.$ = jquery
+
+
+$(document).ready(function() {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $("#location").click(function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var range = $("#ranges").val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            });
+
+            // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
+            $.ajax({
+                url: "/index",
+                type: "POST",
+                data: {latitude : latitude, longitude : longitude, range : range},
+                dataType: 'json'
+                })
+                .done(function(data) {
+                    console.log(data);
+                });
+        },function(){
+            console.log("位置情報が取得できません");
+        });
+    });
+});
