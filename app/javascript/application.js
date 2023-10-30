@@ -20,16 +20,28 @@ $(document).ready(function() {
 
             // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
             $.ajax({
-                url: "/index",
-                type: "POST",
-                data: {latitude : latitude, longitude : longitude, range : range},
-                dataType: 'json'
-                })
-                .done(function(data) {
-                    console.log(data);
-                });
+            url: "/index",
+            type: "POST",
+            data: {latitude : latitude, longitude : longitude, range : range},
+            dataType: 'json'
+            })
+            .done(function(data) {
+                RestaurantDataShow(data);
+            });
         },function(){
             console.log("位置情報が取得できません");
         });
     });
 });
+
+function RestaurantDataShow(data) {
+    document.querySelector(".main").innerHTML = "";
+    const template = document.getElementById("template");
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < data.results.shop.length; i++) {
+      const clone = template.content.cloneNode(true);
+      clone.querySelector(".photo img").src = data.results.shop[i].photo.pc.m;
+      fragment.appendChild(clone);
+    }
+    document.querySelector(".main").appendChild(fragment);
+}
