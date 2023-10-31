@@ -1,5 +1,4 @@
 <div class="searchbox">
-    <button id="location">現在地を取得する</button>
     <form>
         <label for="ranges">検索範囲</label>
         <select id="ranges">
@@ -10,13 +9,16 @@
             <option value="5">3000m </option>
         </select>
     </form>
+    <button id="location">レストランを探す</button>
 </div>
 <div class="index">
     <div class="main"></div>
     <template id="template">
         <div class="restaurant_data">
             <div class="photo"><img src=""></img></div>
-            <div></div>
+            <h1 class="name"></h1>
+            <p class="access"></p>
+            <p class="budget"></p>
         </div>
     </template>
 </div>
