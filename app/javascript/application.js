@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function(){
             navigator.geolocation.getCurrentPosition(function(position) {
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
-                var range = $("#ranges").val();
+                var range = $("#rangeslider").val();
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
@@ -46,22 +46,32 @@ function RestaurantDataShow(data) {
       clone.querySelector(".name").textContent = data.results.shop[i].name;
       clone.querySelector(".budget").textContent = `￥：${data.results.shop[i].budget.name}`;
       clone.querySelector(".access").textContent = `アクセス：${data.results.shop[i].access}`;
+      clone.querySelector(".genre").textContent = `ジャンル：${data.results.shop[i].genre.name}`;
       fragment.appendChild(clone);
     }
     document.querySelector(".main").appendChild(fragment);
 }
 
-$(document).ready(function() {
-    var pagetop = $('.pagetop');
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            pagetop.fadeIn();
-        } else {
-            pagetop.fadeOut();
-            }
-        });
-        pagetop.click(function () {
-            $('body, html').animate({ scrollTop: 0 }, 200);
-            return false;
+
+window.addEventListener('DOMContentLoaded', function(){
+    const inputElem = document.getElementById('rangeslider');
+    const currentdistance = document.getElementById('distance');
+    currentdistance.textContent = rangeOnChange(inputElem.value);
+    inputElem.addEventListener('input', function(){
+        currentdistance.textContent = rangeOnChange(this.value);
     });
+    function rangeOnChange(value) {
+        switch (value){
+            case "1":
+                return "300";
+            case "2":
+                return "500";
+            case "3":
+                return "1000";
+            case "4":
+                return "2000";
+            case "5":
+                return "3000";
+        }
+    }
 });

@@ -1,14 +1,11 @@
 <div class="searchbox">
-    <form>
-        <label for="ranges">検索範囲</label>
-        <select id="ranges">
-            <option value="1">300m</option>
-            <option value="2">500m</option>
-            <option value="3">1000m </option>
-            <option value="4">2000m </option>
-            <option value="5">3000m </option>
-        </select>
-    </form>
+    <div class="distancerange">
+        <p>現在地から</p>
+        <p><span id="distance"></span>m</p>
+    </div>
+    <div class="range">
+        <input type="range" id="rangeslider" min="1" max="5" step="1">
+    </div>
     <button id="location">レストランを探す</button>
 </div>
 <div class="index">
@@ -18,6 +15,7 @@
             <a href=""></a>
             <div class="photo"><img src=""></img></div>
             <h1 class="name"></h1>
+            <p class="genre"></p>
             <p class="access"></p>
             <p class="budget"></p>
         </div>

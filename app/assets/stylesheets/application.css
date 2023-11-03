@@ -23,6 +23,7 @@ body {
     margin: 0;
     font-family: "Kosugi Maru", sans-serif;
     width: 100%;
+    background-color: bisque;
 } 
 
 header {
@@ -46,33 +47,3 @@ header {
     text-decoration: none;
 }
 
-.pagetop {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 15px;
-}
-.pagetop a {
-    display: block;
-    background-color: #ccc;
-    text-align: center;
-    color: #222;
-    font-size: 12px;
-    text-decoration: none;
-    padding: 5px 10px;
-	filter:alpha(opacity=50);
-    -moz-opacity: 0.5;
-    opacity: 0.5;
-}
-.pagetop a:hover {
-    display: block;
-    background-color: #b2d1fb;
-    text-align: center;
-    color: #fff;
-    font-size: 12px;
-    text-decoration: none;
-    padding:5px 10px;
-	filter:alpha(opacity=50);
-    -moz-opacity: 0.5;
-    opacity: 0.5;
-}
