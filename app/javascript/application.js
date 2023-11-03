@@ -4,39 +4,39 @@ import "controllers"
 import jquery from "jquery"
 window.$ = jquery
 
-window.addEventListener('DOMContentLoaded', function(){
-    $(document).ready(function() {
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
-        $("#location").click(function() {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                var range = $("#rangeslider").val();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    }
-                });
 
-                // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
-                $.ajax({
-                url: "/index",
-                type: "POST",
-                data: {latitude : latitude, longitude : longitude, range : range},
-                dataType: 'json'
-                })
-                .done(function(data) {
-                    RestaurantDataShow(data);
-                });
-            },function(){
-                console.log("位置情報が取得できません");
-            });
+$("#location").click(getrestauarnt);
+function getrestauarnt(event) {
+    var start = $(this).val();
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var range = $("#rangeslider").val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         });
+
+        // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
+        $.ajax({
+        url: "/index",
+        type: "POST",
+        data: {latitude : latitude, longitude : longitude, range : range, start : start},
+        dataType: 'json'
+        })
+        .done(function(data) {
+            RestaurantDataShow(data);
+        });
+    },function(){
+        console.log("位置情報が取得できません");
     });
-});
+}
 
 function RestaurantDataShow(data) {
     document.querySelector(".main").innerHTML = "";
+    document.querySelector(".pagenation").innerHTML = "";
     const template = document.getElementById("template");
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < data.results.shop.length; i++) {
@@ -50,6 +50,18 @@ function RestaurantDataShow(data) {
       fragment.appendChild(clone);
     }
     document.querySelector(".main").appendChild(fragment);
+
+    if (data.results.results_available > 10) {
+        const i = Math.floor(data.results.results_available / 10) + 1;
+        for (let j = 0; j < i; j++) {
+          const span = document.createElement("button");
+          span.textContent = j + 1;
+          span.value = 10 * j + 1;
+          span.addEventListener("click", getrestauarnt);
+          fragment.appendChild(span);
+        }
+        document.querySelector(".pagenation").appendChild(fragment);
+    }
 }
 
 

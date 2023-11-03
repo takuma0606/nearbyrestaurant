@@ -10,7 +10,8 @@ class RestaurantsController < ApplicationController
         lat = params[:latitude]
         lng = params[:longitude]
         range = params[:range]
-        api = URI.parse("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
+        start = params[:start]
+        api = URI.parse("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&start=#{start}&order=1&format=json")
         json = Net::HTTP.get(api)
         result = JSON.parse(json)
         render json: result
