@@ -4,32 +4,33 @@ import "controllers"
 import jquery from "jquery"
 window.$ = jquery
 
+window.addEventListener('DOMContentLoaded', function(){
+    $(document).ready(function() {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $("#location").click(function() {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                var range = $("#ranges").val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
 
-$(document).ready(function() {
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-    $("#location").click(function() {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            var range = $("#ranges").val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                }
+                // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
+                $.ajax({
+                url: "/index",
+                type: "POST",
+                data: {latitude : latitude, longitude : longitude, range : range},
+                dataType: 'json'
+                })
+                .done(function(data) {
+                    RestaurantDataShow(data);
+                });
+            },function(){
+                console.log("位置情報が取得できません");
             });
-
-            // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
-            $.ajax({
-            url: "/index",
-            type: "POST",
-            data: {latitude : latitude, longitude : longitude, range : range},
-            dataType: 'json'
-            })
-            .done(function(data) {
-                RestaurantDataShow(data);
-            });
-        },function(){
-            console.log("位置情報が取得できません");
         });
     });
 });
@@ -49,3 +50,18 @@ function RestaurantDataShow(data) {
     }
     document.querySelector(".main").appendChild(fragment);
 }
+
+$(document).ready(function() {
+    var pagetop = $('.pagetop');
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            pagetop.fadeIn();
+        } else {
+            pagetop.fadeOut();
+            }
+        });
+        pagetop.click(function () {
+            $('body, html').animate({ scrollTop: 0 }, 200);
+            return false;
+    });
+});

@@ -46,16 +46,33 @@ header {
     text-decoration: none;
 }
 
-#topButton {
+.pagetop {
+    display: none;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
+    bottom: 30px;
+    right: 15px;
 }
-
-#topButton:hover {
-    background-color: #555;
+.pagetop a {
+    display: block;
+    background-color: #ccc;
+    text-align: center;
+    color: #222;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 5px 10px;
+	filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+.pagetop a:hover {
+    display: block;
+    background-color: #b2d1fb;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    padding:5px 10px;
+	filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
 }
