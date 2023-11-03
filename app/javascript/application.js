@@ -40,6 +40,7 @@ function RestaurantDataShow(data) {
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < data.results.shop.length; i++) {
       const clone = template.content.cloneNode(true);
+      clone.querySelector("a").href = `/show/${data.results.shop[i].id}`;
       clone.querySelector(".photo img").src = data.results.shop[i].photo.pc.m;
       clone.querySelector(".name").textContent = data.results.shop[i].name;
       clone.querySelector(".budget").textContent = `￥：${data.results.shop[i].budget.name}`;

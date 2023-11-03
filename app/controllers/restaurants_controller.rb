@@ -1,11 +1,11 @@
 class RestaurantsController < ApplicationController
+    require 'net/http'
+    require 'uri'
+    require 'json'
     def search
     end
 
     def index
-        require 'net/http'
-        require 'uri'
-        require 'json'
         key = "087ce2f78e1da5e8"
         lat = params[:latitude]
         lng = params[:longitude]
@@ -17,5 +17,10 @@ class RestaurantsController < ApplicationController
     end 
     
     def show
+        key = "087ce2f78e1da5e8"
+        restaurant_id = params[:id]
+        api = URI.parse("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&id=#{restaurant_id}&format=json")
+        json = Net::HTTP.get(api)
+        @restaurant = JSON.parse(json)
     end
 end

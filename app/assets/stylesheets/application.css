@@ -22,7 +22,7 @@ scroll-behavior: smooth;
 body {
     margin: 0;
     font-family: "Kosugi Maru", sans-serif;
-    width: 100;
+    width: 100%;
 } 
 
 header {
@@ -38,8 +38,12 @@ header {
     z-index: 2;
 }
 .title {
-    color: #fff;
     font-size: 25px;
+}
+
+.title a{
+    color: #fff;
+    text-decoration: none;
 }
 
 #topButton {
