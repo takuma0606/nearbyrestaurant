@@ -1,8 +1,11 @@
 .searchbox {
-    width: 400px;
-    padding-top: 100px;
+    width: 700px;
+    padding-top: 50px;
     margin:0 auto;
     text-align: center;
+    h1 {
+        font-size: 100px;
+    }
     button {
         margin-top:30px;
         -webkit-appearance: none;
@@ -138,10 +141,23 @@
     margin: 0 auto;
     .pagenation {
         margin-bottom: 50px;
-        a {
+        button {
             margin-right: 20px;
+            margin-left: 20px;
             font-size: 20px;
             cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            background-color: rgb(167, 167, 167);
+            border: none;
+            &:hover {
+                background-color: rgb(211, 73, 73);
+            }
         }
     }
 }
@@ -208,3 +224,35 @@
         margin: 0px;
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .index {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .pagenation {
+        text-align: center;
+    }
+    .main {
+        flex-flow: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        .restaurant_data {
+            width: 350px;
+        }
+    }
+    .searchbox {
+        width: 100%;
+        h1 {
+            font-size: 70px;
+        }
+    }
+    .index {
+        width: 100%;
+    }
+}
+
+  

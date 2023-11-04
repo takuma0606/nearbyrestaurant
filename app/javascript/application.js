@@ -51,12 +51,12 @@ function RestaurantDataShow(data) {
     }
     document.querySelector(".main").appendChild(fragment);
 
-    if (data.results.results_available > 10) {
-        const i = Math.floor(data.results.results_available / 10) + 1;
+    if (data.results.results_available > 9) {
+        const i = Math.floor(data.results.results_available / 9) + 1;
         for (let j = 0; j < i; j++) {
           const span = document.createElement("button");
           span.textContent = j + 1;
-          span.value = 10 * j + 1;
+          span.value = 9 * j + 1;
           span.addEventListener("click", getrestauarnt);
           fragment.appendChild(span);
         }
