@@ -3,6 +3,7 @@
         <div class="photo"><img src=<%= @restaurant["results"]["shop"][0]["photo"]["pc"]["l"] %>></img></div>
         <h1 class="name"><%= @restaurant["results"]["shop"][0]["name"] %></h1>
         <p class="shop_title"><%= @restaurant["results"]["shop"][0]["catch"] %></p>
+        <p class="shop_url">店舗URL：<a href="<%= @restaurant["results"]["shop"][0]["urls"]["pc"] %>"><%= @restaurant["results"]["shop"][0]["urls"]["pc"] %></a></p>
         <p class="access">アクセス：<%= @restaurant["results"]["shop"][0]["access"] %></p>
         <p class="address">
             住所：<%= @restaurant["results"]["shop"][0]["address"] %>
