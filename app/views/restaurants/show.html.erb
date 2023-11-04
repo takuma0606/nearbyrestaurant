@@ -4,7 +4,11 @@
         <h1 class="name"><%= @restaurant["results"]["shop"][0]["name"] %></h1>
         <p class="shop_title"><%= @restaurant["results"]["shop"][0]["catch"] %></p>
         <p class="access">アクセス：<%= @restaurant["results"]["shop"][0]["access"] %></p>
-        <p class="address">住所：<%= @restaurant["results"]["shop"][0]["address"] %></p>
+        <p class="address">
+            住所：<%= @restaurant["results"]["shop"][0]["address"] %>
+            <iframe src="https://maps.google.co.jp/maps?output=embed&q=<%= @restaurant["results"]["shop"][0]["name"] %>
+            &q=<%= @restaurant["results"]["shop"][0]["lat"] %>,<%= @restaurant["results"]["shop"][0]["lng"] %>"></iframe>
+        </p>
         <p class="genre">ジャンル：<%= @restaurant["results"]["shop"][0]["genre"]["name"] %></p>
         <p class="budget">予算：<%= @restaurant["results"]["shop"][0]["budget"]["average"] %></p>
         <p class="budget_memo">料金備考：<%= @restaurant["results"]["shop"][0]["budget_memo"] %></p>
