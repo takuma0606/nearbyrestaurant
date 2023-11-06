@@ -18,6 +18,7 @@ function getrestauarnt(event) {
         var longitude = position.coords.longitude;
         var range = $("#distancerange").val();
         var budget = $("#budgetrange").val();
+        var genre = $('.selectfield input:checked').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': csrfToken
@@ -28,7 +29,7 @@ function getrestauarnt(event) {
         $.ajax({
         url: "/index",
         type: "POST",
-        data: {latitude : latitude, longitude : longitude, range : range, start : start, budget : budget},
+        data: {latitude : latitude, longitude : longitude, range : range, start : start, budget : budget, genre : genre},
         dataType: 'json'
         })
         .done(function(data) {
@@ -105,5 +106,14 @@ $(function () {
     $(".pagetop a").click(function () {
         $("body,html").animate({ scrollTop: 0 }, 500);
         return false;
+    });
+});
+
+$(function(){
+    $('.searchfield input').on('click', function() {
+        if ($(this).prop('checked')){
+            $('.searchfield input').prop('checked', false);
+            $(this).prop('checked', true);
+        }
     });
 });
