@@ -11,11 +11,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://kit.fontawesome.com/f22947ffc5.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <header id="top">
-      <h1 class="title"><a href="/">Nearby Restaurants</a></h1>
+      <h1 class="title"><a href="/">Nearby Restaurants <i class="fa-solid fa-utensils"></i></a></h1>
     </header>
     <%= yield %>
     <p class="pagetop"><a>▲</a></p>
