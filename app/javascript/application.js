@@ -9,6 +9,8 @@ window.$ = jquery
 $("#location").click(getrestauarnt);
 function getrestauarnt(event) {
     var start = $(this).val();
+    var page = $(this).data("page");
+    var toindex = $('.index').offset().top;
     navigator.geolocation.getCurrentPosition(function(position) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         var latitude = position.coords.latitude;
@@ -29,6 +31,8 @@ function getrestauarnt(event) {
         })
         .done(function(data) {
             RestaurantDataShow(data);
+            $(`.pagenation button[data-page=${page}]`).addClass('current');
+            $("html").animate({scrollTop: toindex},500);
         });
     },function(){
         console.log("位置情報が取得できません");
@@ -58,6 +62,7 @@ function RestaurantDataShow(data) {
           const span = document.createElement("button");
           span.textContent = j + 1;
           span.value = 9 * j + 1;
+          span.dataset.page = j + 1;
           span.addEventListener("click", getrestauarnt);
           fragment.appendChild(span);
         }
@@ -91,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 $(function () {
     $(".pagetop a").click(function () {
-        $("body,html").animate({ scrollTop: 0 }, 800);
+        $("body,html").animate({ scrollTop: 0 }, 500);
         return false;
     });
 });
