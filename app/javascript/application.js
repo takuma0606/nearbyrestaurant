@@ -8,6 +8,7 @@ window.$ = jquery
 
 $("#location").click(getrestauarnt);
 function getrestauarnt(event) {
+    $(".index").css("display","block");
     var start = $(this).val();
     var page = $(this).data("page");
     var toindex = $('.index').offset().top;
@@ -15,7 +16,8 @@ function getrestauarnt(event) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
-        var range = $("#rangeslider").val();
+        var range = $("#distancerange").val();
+        var budget = $("#budgetrange").val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': csrfToken
@@ -26,7 +28,7 @@ function getrestauarnt(event) {
         $.ajax({
         url: "/index",
         type: "POST",
-        data: {latitude : latitude, longitude : longitude, range : range, start : start},
+        data: {latitude : latitude, longitude : longitude, range : range, start : start, budget : budget},
         dataType: 'json'
         })
         .done(function(data) {
@@ -72,7 +74,7 @@ function RestaurantDataShow(data) {
 
 
 window.addEventListener('DOMContentLoaded', function(){
-    const inputElem = document.getElementById('rangeslider');
+    const inputElem = document.getElementById('distancerange');
     const currentdistance = document.getElementById('distance');
     currentdistance.textContent = rangeOnChange(inputElem.value);
     inputElem.addEventListener('input', function(){
@@ -93,6 +95,38 @@ window.addEventListener('DOMContentLoaded', function(){
         }
     }
 });
+
+window.addEventListener('DOMContentLoaded', function(){
+    const inputElem = document.getElementById('budgetrange');
+    const currentdistance = document.getElementById('budget');
+    currentdistance.textContent = rangeOnChange(inputElem.value);
+    inputElem.addEventListener('input', function(){
+        currentdistance.textContent = rangeOnChange(this.value);
+    });
+    function rangeOnChange(value) {
+        switch (value){
+            case "1":
+                return "指定なし";
+            case "2":
+                return "～500円";
+            case "3":
+                return "501～1000円";
+            case "4":
+                return "1001～1500円";
+            case "5":
+                return "1501～2000円";
+            case "6":
+                return "2001～3000円";
+            case "7":
+                return "3001～4000円";     
+            case "8":
+                return "4001～5000円";
+            case "9":
+                return "5001～7000円";           
+        }
+    }
+});
+
 
 $(function () {
     $(".pagetop a").click(function () {
