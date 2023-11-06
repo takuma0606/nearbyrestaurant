@@ -58,12 +58,12 @@ function RestaurantDataShow(data) {
     }
     document.querySelector(".main").appendChild(fragment);
 
-    if (data.results.results_available > 9) {
-        const i = Math.floor(data.results.results_available / 9) + 1;
+    if (data.results.results_available > 39) {
+        const i = Math.floor(data.results.results_available / 39) + 1;
         for (let j = 0; j < i; j++) {
           const span = document.createElement("button");
           span.textContent = j + 1;
-          span.value = 9 * j + 1;
+          span.value = 39 * j + 1;
           span.dataset.page = j + 1;
           span.addEventListener("click", getrestauarnt);
           fragment.appendChild(span);
@@ -81,18 +81,8 @@ window.addEventListener('DOMContentLoaded', function(){
         currentdistance.textContent = rangeOnChange(this.value);
     });
     function rangeOnChange(value) {
-        switch (value){
-            case "1":
-                return "300";
-            case "2":
-                return "500";
-            case "3":
-                return "1000";
-            case "4":
-                return "2000";
-            case "5":
-                return "3000";
-        }
+        const distance = {'1':'300','2':'500','3':'1000','4':'2000','5':'3000'};
+        return distance[value];
     }
 });
 
@@ -104,26 +94,9 @@ window.addEventListener('DOMContentLoaded', function(){
         currentdistance.textContent = rangeOnChange(this.value);
     });
     function rangeOnChange(value) {
-        switch (value){
-            case "1":
-                return "指定なし";
-            case "2":
-                return "～500円";
-            case "3":
-                return "501～1000円";
-            case "4":
-                return "1001～1500円";
-            case "5":
-                return "1501～2000円";
-            case "6":
-                return "2001～3000円";
-            case "7":
-                return "3001～4000円";     
-            case "8":
-                return "4001～5000円";
-            case "9":
-                return "5001～7000円";           
-        }
+        const budget = {'1':'指定なし','2':'～500円','3':'501～1000円','4':'1001～1500円','5':'1501～2000円'
+        ,'6':'2001～3000円','7':'3001～4000円','8':'4001～5000円','9':'5001～7000円'};
+        return budget[value];
     }
 });
 

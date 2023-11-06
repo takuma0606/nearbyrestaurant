@@ -11,7 +11,7 @@ class RestaurantsController < ApplicationController
         lng = "135.49478311156489"
         range = params[:range]
         start = params[:start]
-        count = 9
+        count = 39
         budget = params[:budget]
         if budget == 1
             api = URI.parse("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&start=#{start}&count=#{count}&order=1&format=json")
@@ -32,24 +32,8 @@ class RestaurantsController < ApplicationController
         @restaurant = JSON.parse(json)
     end
 
-    def budget_code(budget)
-        case budget 
-        when "2" then
-          return "B009"
-        when "3" then 
-          return "B010"
-        when "4" then 
-          return "B011"
-        when "5" then 
-          return "B001"
-        when "6" then 
-          return "B002"
-        when "7" then 
-          return "B003"
-        when "8" then 
-          return "B008"
-        when "9" then 
-          return "B004"
-        end
-      end
+    def budget_code(value)
+        budget = {"2"=>"B009","3"=>"B010","4"=>"B011","5"=>"B001","6"=>"B002","7"=>"B003","8"=>"B008","9"=>"B004"}
+        return budget[value]
+    end
 end
