@@ -1,37 +1,171 @@
 .searchbox {
     width: 700px;
-    padding-top: 20px;
+    padding-top: 70px;
     margin:0 auto;
     text-align: center;
     h1 {
         font-size: 100px;
-        margin-bottom: 20px;
+        margin: 0px;
     }
     .searchfield {
         display: flex;
+        width: 100%;
+        justify-content: space-between;
         .sliderfield {
-            width: 50%;
+            width: 300px;
+            .distancerange,
+            .budgetrange {
+                display:flex;
+                justify-content: space-between;
+                width: 100%;
+                margin: 0 auto;
+            }
+            
+            .range {
+                background: #fff;
+                height: 2rem;
+                width: 100%;
+                border-radius: 5rem;
+                margin:0 auto 30px;
+                box-shadow: 1px 5px 5px rgba(black, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            input[type="range"] {
+            -webkit-appearance: none;
+            width: 80%;
+            height: 100%;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+            
+            //WEBKIT
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+                cursor: pointer;
+            }
+            
+            &::-webkit-slider-runnable-track {
+                height: 9px;
+                border-radius: 3rem;
+                transition: all 0.5s;
+                cursor: pointer;
+                background: rgb(211, 73, 73);
+            }
+            
+            // IE
+            
+            &::-ms-track {
+                width: 60%;
+                cursor: pointer;
+                height: 9px;
+            
+                transition: all 0.5s;
+                /* Hides the slider so custom styles can be added */
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+            }
+            
+            &::-ms-thumb {
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+            
+                cursor: pointer;
+            }
+            
+            &::-ms-fill-lower {
+                background: #bdbdbd;
+                border-radius: 3rem;
+            }
+            &:focus::-ms-fill-lower {
+                background: rgb(211, 73, 73);
+            }
+            &::-ms-fill-upper {
+                background: #bdbdbd;
+                border-radius: 3rem;
+            }
+            &:focus::-ms-fill-upper {
+                background: rgb(211, 73, 73);
+            }
+            
+            //FIREFOX
+            &::-moz-range-thumb {
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+            
+                cursor: pointer;
+            }
+            
+            &::-moz-range-track {
+                width: 90%;
+                height: 9px;
+                background: rgb(211, 73, 73);
+                border-radius: 3rem;
+            
+                transition: all 0.5s;
+                cursor: pointer;
+            }
+        }
         }
         .selectfield {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            width: 50%;
-            padding-top: 40px;
+            width: 350px;
+            margin-top: 40px;
             div {
                 margin-bottom: 20px;
-                input[type="checkbox"]  {
+                label {
+                    cursor: pointer;
+                }
+                input[type="checkbox"] {
+                    position: relative;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px dotted #000;
                     border-radius: 5px;
-                    border: 1px solid #000;
-                    padding: 15px;
-                    &:active {
-                        background-color: red;
-                    }
-                }                
+                    vertical-align: -5px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    margin: 0px 5px 0px 0px;
+                    cursor: pointer;
+                }    
+                input[type="checkbox"]:checked:after {
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    display: inline-block;
+                    color: #fff;
+                    background-color: rgb(211, 73, 73);
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 5px;
+                    text-align: center;
+                    content: '✔';
+                }           
             }
         }
     }
-    button {
+    #location {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -42,7 +176,7 @@
         font-size: 20px;
         cursor: pointer;
         width: 300px;
-        margin: 40px auto 0px;
+        margin: 30px auto 0px;
         border-top: none;
         border-left: none;
         border-right: none;
@@ -50,120 +184,9 @@
         transition: all 0.3s;
         border-bottom: 7px solid rgb(141, 49, 49);
         &:active {
-            margin-top: 46px;
+            margin-top: 36px;
             border-bottom: 1px solid rgb(141, 49, 49);
         }
-    }
-    .distancerange,
-    .budgetrange {
-        display:flex;
-        justify-content: space-between;
-        width: 300px;
-        margin: 0 auto;
-    }
-      
-    .range {
-        background: #fff;
-        height: 2rem;
-        width: 300px;
-        border-radius: 5rem;
-        margin:0 auto 30px;
-        box-shadow: 1px 5px 5px rgba(black, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    input[type="range"] {
-    -webkit-appearance: none;
-    width: 80%;
-    height: 100%;
-    background: transparent;
-    &:focus {
-        outline: none;
-    }
-    
-    //WEBKIT
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-        cursor: pointer;
-    }
-    
-    &::-webkit-slider-runnable-track {
-        height: 9px;
-        border-radius: 3rem;
-        transition: all 0.5s;
-        cursor: pointer;
-        background: rgb(211, 73, 73);
-    }
-    
-    // IE
-    
-    &::-ms-track {
-        width: 60%;
-        cursor: pointer;
-        height: 9px;
-    
-        transition: all 0.5s;
-        /* Hides the slider so custom styles can be added */
-        background: transparent;
-        border-color: transparent;
-        color: transparent;
-    }
-    
-    &::-ms-thumb {
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-    
-        cursor: pointer;
-    }
-    
-    &::-ms-fill-lower {
-        background: #bdbdbd;
-        border-radius: 3rem;
-    }
-    &:focus::-ms-fill-lower {
-        background: rgb(211, 73, 73);
-    }
-    &::-ms-fill-upper {
-        background: #bdbdbd;
-        border-radius: 3rem;
-    }
-    &:focus::-ms-fill-upper {
-        background: rgb(211, 73, 73);
-    }
-    
-    //FIREFOX
-    &::-moz-range-thumb {
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-    
-        cursor: pointer;
-    }
-    
-    &::-moz-range-track {
-        width: 90%;
-        height: 9px;
-        background: rgb(211, 73, 73);
-        border-radius: 3rem;
-    
-        transition: all 0.5s;
-        cursor: pointer;
-    }
     }
 }
 .index {
@@ -271,14 +294,13 @@
 @media screen and (max-width: 700px) {
     .searchbox {
         width: 100%;
-        padding-top: 200px;
+        padding-top: 100px;
         h1 {
             font-size: 70px;
         }
         .searchfield {
             flex-flow: column;
-            flex-wrap: nowrap;
-            justify-content: center;
+            align-items: center;
         }
     }
     .index {

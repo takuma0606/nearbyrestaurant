@@ -19,13 +19,11 @@
         </div>
         <div class="selectfield">
         <% @genres.each do |genre,code| %>
-            <div>
-                <label><input type="checkbox" value=<%= code %>><%= genre %></label>
-            </div>
+            <div><label><input type="checkbox" value=<%= code %>><%= genre %></label></div>
         <% end %>
         </div>
     </div>
-    <button id="location" value="1" data-page="1"><i class="fa-solid fa-magnifying-glass"></i> レストランを探す</button>
+    <button id="location" value="1" data-page="1"><i class="fa-solid fa-magnifying-glass"></i>  レストランを探す</button>
 </div>
 <div class="index">
     <div class="main"></div>
