@@ -1,13 +1,171 @@
 .searchbox {
     width: 700px;
-    padding-top: 50px;
+    padding-top: 70px;
     margin:0 auto;
     text-align: center;
     h1 {
         font-size: 100px;
+        margin: 0px;
     }
-    button {
-        margin-top:30px;
+    .searchfield {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        .sliderfield {
+            width: 300px;
+            .distancerange,
+            .budgetrange {
+                display:flex;
+                justify-content: space-between;
+                width: 100%;
+                margin: 0 auto;
+            }
+            
+            .range {
+                background: #fff;
+                height: 2rem;
+                width: 100%;
+                border-radius: 5rem;
+                margin:0 auto 30px;
+                box-shadow: 1px 5px 5px rgba(black, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            input[type="range"] {
+            -webkit-appearance: none;
+            width: 80%;
+            height: 100%;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+            
+            //WEBKIT
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+                cursor: pointer;
+            }
+            
+            &::-webkit-slider-runnable-track {
+                height: 9px;
+                border-radius: 3rem;
+                transition: all 0.5s;
+                cursor: pointer;
+                background: rgb(211, 73, 73);
+            }
+            
+            // IE
+            
+            &::-ms-track {
+                width: 60%;
+                cursor: pointer;
+                height: 9px;
+            
+                transition: all 0.5s;
+                /* Hides the slider so custom styles can be added */
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+            }
+            
+            &::-ms-thumb {
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+            
+                cursor: pointer;
+            }
+            
+            &::-ms-fill-lower {
+                background: #bdbdbd;
+                border-radius: 3rem;
+            }
+            &:focus::-ms-fill-lower {
+                background: rgb(211, 73, 73);
+            }
+            &::-ms-fill-upper {
+                background: #bdbdbd;
+                border-radius: 3rem;
+            }
+            &:focus::-ms-fill-upper {
+                background: rgb(211, 73, 73);
+            }
+            
+            //FIREFOX
+            &::-moz-range-thumb {
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                background: #ffffff;
+                margin-top: -5px;
+                box-shadow: 1px 1px 2px rgba(#000, 0.5);
+            
+                cursor: pointer;
+            }
+            
+            &::-moz-range-track {
+                width: 90%;
+                height: 9px;
+                background: rgb(211, 73, 73);
+                border-radius: 3rem;
+            
+                transition: all 0.5s;
+                cursor: pointer;
+            }
+        }
+        }
+        .selectfield {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 350px;
+            margin-top: 40px;
+            div {
+                margin-bottom: 20px;
+                label {
+                    cursor: pointer;
+                }
+                input[type="checkbox"] {
+                    position: relative;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px dotted #000;
+                    border-radius: 5px;
+                    vertical-align: -5px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    margin: 0px 5px 0px 0px;
+                    cursor: pointer;
+                }    
+                input[type="checkbox"]:checked:after {
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    display: inline-block;
+                    color: #fff;
+                    background-color: rgb(211, 73, 73);
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 5px;
+                    text-align: center;
+                    content: '✔';
+                }           
+            }
+        }
+    }
+    #location {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -16,132 +174,32 @@
         background-color: rgb(211, 73, 73);
         color: #fff;
         font-size: 20px;
-        border: none;
         cursor: pointer;
         width: 300px;
-        margin: 50px auto;
-    }
-    .distancerange {
-        display:flex;
-        justify-content: space-between;
-        width: 300px;
-        margin: 0 auto;
-    }
-      
-    .range {
-    background: #fff;
-    height: 2rem;
-    width: 300px;
-    border-radius: 5rem;
-    margin:0 auto;
-    box-shadow: 1px 5px 5px rgba(black, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-    
-    input[type="range"] {
-    -webkit-appearance: none;
-    width: 80%;
-    height: 100%;
-    background: transparent;
-    &:focus {
-        outline: none;
-    }
-    
-    //WEBKIT
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-        cursor: pointer;
-    }
-    
-    &::-webkit-slider-runnable-track {
-        height: 9px;
-        border-radius: 3rem;
-        transition: all 0.5s;
-        cursor: pointer;
-        background: rgb(211, 73, 73);
-    }
-    
-    // IE
-    
-    &::-ms-track {
-        width: 60%;
-        cursor: pointer;
-        height: 9px;
-    
-        transition: all 0.5s;
-        /* Hides the slider so custom styles can be added */
-        background: transparent;
-        border-color: transparent;
-        color: transparent;
-    }
-    
-    &::-ms-thumb {
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-    
-        cursor: pointer;
-    }
-    
-    &::-ms-fill-lower {
-        background: #bdbdbd;
-        border-radius: 3rem;
-    }
-    &:focus::-ms-fill-lower {
-        background: rgb(211, 73, 73);
-    }
-    &::-ms-fill-upper {
-        background: #bdbdbd;
-        border-radius: 3rem;
-    }
-    &:focus::-ms-fill-upper {
-        background: rgb(211, 73, 73);
-    }
-    
-    //FIREFOX
-    &::-moz-range-thumb {
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #ffffff;
-        margin-top: -5px;
-        box-shadow: 1px 1px 2px rgba(#000, 0.5);
-    
-        cursor: pointer;
-    }
-    
-    &::-moz-range-track {
-        width: 90%;
-        height: 9px;
-        background: rgb(211, 73, 73);
-        border-radius: 3rem;
-    
-        transition: all 0.5s;
-        cursor: pointer;
-    }
+        margin: 30px auto 0px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        border-bottom: 7px solid rgb(141, 49, 49);
+        &:active {
+            margin-top: 36px;
+            border-bottom: 1px solid rgb(141, 49, 49);
+        }
     }
 }
 .index {
+    display: none;
     width: 80%;
     padding: 100px 0px;
     margin: 0 auto;
+    text-align: center;
     .pagenation {
         margin-bottom: 50px;
         button {
-            margin-right: 20px;
-            margin-left: 20px;
-            font-size: 20px;
+            margin: 20px;
+            font-size: 15px;
             cursor: pointer;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -155,6 +213,9 @@
             &:hover {
                 background-color: rgb(211, 73, 73);
             }
+        }
+        .current {
+            background-color: rgb(211, 73, 73);
         }
     }
     .main {
@@ -170,9 +231,9 @@
         .restaurant_data {
             width: 300px;
             border-radius: 30px;
-            border: 2px solid #c9c7c7;
+            border: 5px solid rgb(211, 73, 73);
             padding:0px;
-            height: 400px;
+            height: 430px;
             margin-bottom: 50px;
             position: relative;
             transition: 0.2s;
@@ -233,8 +294,13 @@
 @media screen and (max-width: 700px) {
     .searchbox {
         width: 100%;
+        padding-top: 100px;
         h1 {
             font-size: 70px;
+        }
+        .searchfield {
+            flex-flow: column;
+            align-items: center;
         }
     }
     .index {

@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-html{
-scroll-behavior: smooth;
-}
   
 
 body {
@@ -47,3 +43,20 @@ header {
     text-decoration: none;
 }
 
+
+.pagetop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+.pagetop a {
+    display: block;
+    background-color: rgb(211, 73, 73);
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
