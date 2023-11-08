@@ -41,6 +41,27 @@ function getrestauarnt(event) {
             RestaurantDataShow(data);
             //現在表示されているページ数を色付け
             $(`.pagenation button[data-page=${page}]`).addClass('current');
+            //最後のページ番号を取得
+            var lastpage = $(".pagenation button:last").data("page");
+            if (lastpage >= 11) {
+                $(".pagenation button").hide();
+                if (page < 5) {
+                    for (let i = 1; i < 11; i++) {
+                        $(`.pagenation button[data-page=${i}]`).show();
+                    }
+                } else if ((lastpage - page) < 4 ) {
+                    for (let i = (lastpage-10); i <= (lastpage); i++) {
+                        $(`.pagenation button[data-page=${i}]`).show();
+                    }
+                } else {
+                    //現在のページの前後4ページを表示
+                    for (let i = 1; i < 5; i++) {
+                        $(`.pagenation button[data-page=${page-i}]`).show();
+                        $(`.pagenation button[data-page=${page+i}]`).show();
+                    }
+                    $(`.pagenation button[data-page=${page}]`).show();
+                }
+            }
             $("html").animate({scrollTop: toindex},500);
         });
     },function(){
