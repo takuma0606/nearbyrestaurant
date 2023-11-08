@@ -1,8 +1,10 @@
+//検索欄
 .searchbox {
     width: 700px;
     padding-top: 70px;
     margin:0 auto;
     text-align: center;
+    //サイトタイトル
     h1 {
         font-size: 100px;
         margin: 0px;
@@ -11,6 +13,7 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+        //検索スライダー欄
         .sliderfield {
             width: 300px;
             .distancerange,
@@ -125,6 +128,7 @@
             }
         }
         }
+        //ジャンル検索欄
         .selectfield {
             display: flex;
             flex-wrap: wrap;
@@ -165,6 +169,7 @@
             }
         }
     }
+    //検索ボタン
     #location {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -189,12 +194,14 @@
         }
     }
 }
+//検索一覧欄
 .index {
     display: none;
     width: 80%;
     padding: 100px 0px;
     margin: 0 auto;
     text-align: center;
+    //ページネーション欄
     .pagenation {
         margin-bottom: 50px;
         button {
@@ -214,6 +221,7 @@
                 background-color: rgb(211, 73, 73);
             }
         }
+        //現在のページ数のボタン
         .current {
             background-color: rgb(211, 73, 73);
         }
