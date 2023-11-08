@@ -7,11 +7,15 @@ window.$ = jquery
 
 
 $("#location").click(getrestauarnt);
+//レストランデータを取得する関数
 function getrestauarnt(event) {
     $(".index").css("display","block");
+    //何件目のデータを取得するか
     var start = $(this).val();
+    //現在のページ数を取得
     var page = $(this).data("page");
     var toindex = $('.index').offset().top;
+    //現在地をgeolocationapiを使用して取得
     navigator.geolocation.getCurrentPosition(function(position) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         var latitude = position.coords.latitude;
@@ -25,15 +29,17 @@ function getrestauarnt(event) {
             }
         });
 
-        // 2. Ajax通信を使ってRailsコントローラに緯度と経度を送信
+        // 2. Ajax通信を使ってRailsコントローラに検索クエリを送信
         $.ajax({
         url: "/index",
         type: "POST",
         data: {latitude : latitude, longitude : longitude, range : range, start : start, budget : budget, genre : genre},
         dataType: 'json'
         })
+        //ajax通信成功時
         .done(function(data) {
             RestaurantDataShow(data);
+            //現在表示されているページ数を色付け
             $(`.pagenation button[data-page=${page}]`).addClass('current');
             $("html").animate({scrollTop: toindex},500);
         });
@@ -42,7 +48,9 @@ function getrestauarnt(event) {
     });
 }
 
+//グルメサーチapiで得られたデータをviewに埋め込む関数
 function RestaurantDataShow(data) {
+    //再び検索した時に前回表示したデータが再び表示されないように中身を消す
     document.querySelector(".main").innerHTML = "";
     document.querySelector(".pagenation").innerHTML = "";
     const template = document.getElementById("template");
@@ -60,12 +68,17 @@ function RestaurantDataShow(data) {
     document.querySelector(".main").appendChild(fragment);
 
     if (data.results.results_available > 39) {
+        //ページ数を算出
         const i = Math.floor(data.results.results_available / 39) + 1;
         for (let j = 0; j < i; j++) {
           const span = document.createElement("button");
+          //ページ番号
           span.textContent = j + 1;
+          //検索クエリstartの値
           span.value = 39 * j + 1;
+          //ページ数を格納
           span.dataset.page = j + 1;
+          //ページボタン押下時にgetrestaurant関数（レストラン検索関数）を実行
           span.addEventListener("click", getrestauarnt);
           fragment.appendChild(span);
         }
@@ -73,7 +86,7 @@ function RestaurantDataShow(data) {
     }
 }
 
-
+//距離検索スライダーをスライド時に距離の表示を動的に変える関数
 window.addEventListener('DOMContentLoaded', function(){
     const inputElem = document.getElementById('distancerange');
     const currentdistance = document.getElementById('distance');
@@ -87,6 +100,7 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+//予算検索スライダーをスライド時に予算の表示を動的に変える関数
 window.addEventListener('DOMContentLoaded', function(){
     const inputElem = document.getElementById('budgetrange');
     const currentdistance = document.getElementById('budget');
@@ -101,7 +115,7 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 });
 
-
+//上に戻るボタンの処理
 $(function () {
     $(".pagetop a").click(function () {
         $("body,html").animate({ scrollTop: 0 }, 500);
@@ -109,6 +123,7 @@ $(function () {
     });
 });
 
+//ジャンル検索ボタンが複数選択されないようにする処理
 $(function(){
     $('.searchfield input').on('click', function() {
         if ($(this).prop('checked')){

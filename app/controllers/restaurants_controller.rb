@@ -15,7 +15,9 @@ class RestaurantsController < ApplicationController
         count = 39
         budget = params[:budget]
         genre = params[:genre]
+        #budget=1(予算の指定がないとき)
         if budget == 1
+            #グルメサーチapiを使用して検索条件に合うレストランデータを取得
             api = URI.parse("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&start=#{start}&count=#{count}&genre=#{genre}&order=1&format=json")
         else
             budget = budget_code(budget)
