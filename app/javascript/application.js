@@ -38,11 +38,17 @@ function getrestauarnt(event) {
         })
         //ajax通信成功時
         .done(function(data) {
+            //データ件数を表示
+            $(".from").text(start);
+            $(".to").text(Number(start)+Number(data.results.results_returned)-1);
+            $(".alldata").text(data.results.results_available);
+            //グルメサーチapiで得られたデータをviewに埋め込む関数
             RestaurantDataShow(data);
             //現在表示されているページ数を色付け
             $(`.pagenation button[data-page=${page}]`).addClass('current');
             //最後のページ番号を取得
             var lastpage = $(".pagenation button:last").data("page");
+            //ページ数が10を超える場合はページボタンの表示を減らす
             if (lastpage >= 11) {
                 $(".pagenation button").hide();
                 if (page < 5) {
