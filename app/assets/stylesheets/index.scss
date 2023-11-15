@@ -1,0 +1,133 @@
+.index {
+    display: none;
+    width: 80%;
+    padding: 100px 0px;
+    margin: 0 auto;
+    text-align: center;
+    .data_number {
+        display: flex;
+        padding-bottom: 20px;
+        justify-content: center;
+        width: 250px;
+        p {
+            margin: 0px;
+        }
+    }
+    //ページネーション欄
+    .pagenation {
+        margin-bottom: 50px;
+        button {
+            width: 30px;
+            height: 30px;
+            margin: 20px;
+            font-size: 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            background-color: rgb(167, 167, 167);
+            cursor: pointer;
+            &:hover {
+                background-color: rgb(211, 73, 73);
+            }
+        }
+        //現在のページ数のボタン
+        .current {
+            background-color: rgb(211, 73, 73);
+        }
+    }
+    .main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &::after {
+            content: "";
+            display: block;
+            width: 300px;
+            height: 0;
+        }
+        .restaurant_data {
+            position: relative;
+            width: 300px;
+            padding:0px;
+            height: 430px;
+            margin-bottom: 50px;
+            border: 5px solid rgb(211, 73, 73);
+            border-radius: 30px;
+            background: linear-gradient(to bottom right, #FFF, #f1eeee);
+            transition: 0.2s;
+            &:hover {
+                box-shadow: 0 6px 31px -2px rgb(181, 181, 181);
+                transform: translate(0, -10px);
+            }
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+            }
+            .photo {
+                width: 100%;
+                height: 200px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 25px 25px 0px 0px;
+                    object-fit: cover;
+                }
+            }
+            .name {
+                padding: 10px 20px;
+                margin: 0;
+                font-family: "Kosugi Maru", sans-serif;
+                font-size: 20px;
+                color: #fff;
+                background-color: rgb(211, 73, 73);
+            }
+            p {
+                padding: 10px 20px;
+                margin: 0;
+            }
+            .budget {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                margin: 0;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .index {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .index {
+        width: 100%;
+        .data_number {
+            margin: 0 auto;
+        }
+        .pagenation {
+            text-align: center;
+        }
+        .main {
+            flex-flow: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            .restaurant_data {
+                width: 350px;
+            }
+        }
+    }
+}
