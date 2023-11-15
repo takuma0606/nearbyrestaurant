@@ -1,23 +1,23 @@
-<div class="searchbox">
+<div class="search_box">
     <h1>Nearby<br>Restaurants<i class="fa-solid fa-utensils"></i></h1>
-    <div class="searchfield">
-        <div class="sliderfield">
-            <div class="distancerange">
+    <div class="search_field">
+        <div class="slider_field">
+            <div class="distance_range">
                 <p>現在地から</p>
                 <p><span id="distance"></span>m</p>
             </div>
             <div class="range">
-                <input type="range" id="distancerange" min="1" max="5" step="1">
+                <input type="range" id="distance_range" min="1" max="5" step="1">
             </div>
-            <div class="budgetrange">
+            <div class="budget_range">
                 <p>予算</p>
                 <p><span id="budget"></span></p>
             </div>
             <div class="range">
-                <input type="range" id="budgetrange" min="1" max="9" step="1">
+                <input type="range" id="budget_range" min="1" max="9" step="1">
             </div>
         </div>
-        <div class="selectfield">
+        <div class="select_field">
         <% @genres.each do |genre,code| %>
             <div><label><input type="checkbox" value=<%= code %>><%= genre %></label></div>
         <% end %>

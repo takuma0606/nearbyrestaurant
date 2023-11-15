@@ -20,9 +20,9 @@ function getrestauarnt(event) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
-        var range = $("#distancerange").val();
-        var budget = $("#budgetrange").val();
-        var genre = $('.selectfield input:checked').val();
+        var range = $("#distance_range").val();
+        var budget = $("#budget_range").val();
+        var genre = $('.select_field input:checked').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': csrfToken
@@ -115,7 +115,7 @@ function RestaurantDataShow(data) {
 
 //距離検索スライダーをスライド時に距離の表示を動的に変える関数
 window.addEventListener('DOMContentLoaded', function(){
-    const inputElem = document.getElementById('distancerange');
+    const inputElem = document.getElementById('distance_range');
     const currentdistance = document.getElementById('distance');
     currentdistance.textContent = rangeOnChange(inputElem.value);
     inputElem.addEventListener('input', function(){
@@ -129,7 +129,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 //予算検索スライダーをスライド時に予算の表示を動的に変える関数
 window.addEventListener('DOMContentLoaded', function(){
-    const inputElem = document.getElementById('budgetrange');
+    const inputElem = document.getElementById('budget_range');
     const currentdistance = document.getElementById('budget');
     currentdistance.textContent = rangeOnChange(inputElem.value);
     inputElem.addEventListener('input', function(){
@@ -152,9 +152,9 @@ $(function () {
 
 //ジャンル検索ボタンが複数選択されないようにする処理
 $(function(){
-    $('.searchfield input').on('click', function() {
+    $('.search_field input').on('click', function() {
         if ($(this).prop('checked')){
-            $('.searchfield input').prop('checked', false);
+            $('.search_field input').prop('checked', false);
             $(this).prop('checked', true);
         }
     });
